@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For Pamela 🌸</title>
+    <style>
+        * { box-sizing: border-box; touch-action: manipulation; }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #fff5f8 0%, #fee2e2 100%);
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        #main-container {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            width: 85%;
+            max-width: 350px;
+            z-index: 10;
+        }
+
+        h1 { color: #be185d; font-size: 1.5rem; margin-bottom: 30px; }
+
+        .btn-wrapper {
+            position: relative;
+            height: 200px; /* Space for the button to jump around */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #yes-btn {
+            background-color: #ec4899;
+            color: white;
+            box-shadow: 0 5px 15px rgba(236, 72, 153, 0.3);
+        }
+
+        #no-btn {
+            background-color: #94a3b8;
+            color: white;
+            position: fixed; /* Allows it to jump anywhere on the screen */
+            transition: all 0.1s ease;
+            z-index: 100;
+        }
+
+        #success-message {
+            display: none;
+            animation: popIn 0.5s ease;
+        }
+
+        .love-note { font-size: 1rem; color: #4b5563; line-height: 1.5; }
+        .healing-wish { color: #db2777; font-weight: bold; margin-top: 15px; }
+
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-container">
+        <div id="quiz-box">
+            <h1>Pamela, do you love me? ✨</h1>
+            <div class="btn-wrapper">
+                <button id="yes-btn" onclick="celebrate()">Yes!</button>
+                <button id="no-btn">No</button>
+            </div>
+        </div>
+
+        <div id="success-message">
+            <h2 style="color: #be185d;">I knew it! ❤️</h2>
+            <p class="love-note">
+               I just wanted to remind you that you're very important to me. You have a strength that is honestly inspiring, even when you're under the weather.
+            </p>
+            <p class="healing-wish">
+                Please get some rest. I'm sending you all my love and a huge hug until you feel better! 🌸
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('no-btn');
+        const yesBtn = document.getElementById('yes-btn');
+
+        // Set initial position of No button
+        function setInitial() {
+            const rect = yesBtn.getBoundingClientRect();
+            noBtn.style.left = rect.left + 'px';
+            noBtn.style.top = (rect.bottom + 20) + 'px';
+        }
+        window.onload = setInitial;
+
+        // The "Jump" logic for both Touch and Mouse
+        function teleportNo(e) {
+            e.preventDefault(); // Prevents the actual click/tap
+            
+            const padding = 60;
+            const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+            const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+            const yesRect = yesBtn.getBoundingClientRect();
+            const safeZone = 120; // Keep 120px away from Yes button
+
+            let newX, newY;
+            let tooClose = true;
+
+            while (tooClose) {
+                newX = Math.random() * maxX + (padding/2);
+                newY = Math.random() * maxY + (padding/2);
+
+                const distX = Math.abs(newX - yesRect.left);
+                const distY = Math.abs(newY - yesRect.top);
+
+                if (distX > safeZone || distY > safeZone) {
+                    tooClose = false;
+                }
+            }
+
+            noBtn.style.left = newX + 'px';
+            noBtn.style.top = newY + 'px';
+        }
+
+        // Listen for touch start (phone) and mouse over (computer)
+        noBtn.addEventListener('touchstart', teleportNo);
+        noBtn.addEventListener('mouseover', teleportNo);
+
+        function celebrate() {
+            document.getElementById('quiz-box').style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+            noBtn.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
