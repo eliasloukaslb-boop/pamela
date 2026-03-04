@@ -2,154 +2,136 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>For Pamela 🌸</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellness Hub for Pamela</title>
     <style>
-        * { box-sizing: border-box; touch-action: manipulation; }
-        
+        :root {
+            --primary: #76a5af; /* Calm Sage Blue */
+            --soft-pink: #fdf2f2;
+            --text: #4a4a4a;
+        }
+
         body {
-            margin: 0;
-            padding: 0;
+            background-color: #f4f7f6;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #fff5f8 0%, #fee2e2 100%);
-            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            max-width: 500px;
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             overflow: hidden;
             text-align: center;
         }
 
-        #main-container {
-            background: white;
+        .header-image {
+            background: var(--primary);
+            color: white;
+            padding: 40px 20px;
+            background-image: linear-gradient(135deg, #76a5af 0%, #a3c6c4 100%);
+        }
+
+        .content {
             padding: 30px;
-            border-radius: 25px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            width: 85%;
-            max-width: 350px;
-            z-index: 10;
         }
 
-        h1 { color: #be185d; font-size: 1.5rem; margin-bottom: 30px; }
+        h1 { margin: 0; font-size: 1.8rem; letter-spacing: -0.5px; }
+        p { line-height: 1.6; color: #666; }
 
-        .btn-wrapper {
-            position: relative;
-            height: 200px; /* Space for the button to jump around */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        button {
-            padding: 15px 30px;
-            font-size: 1.2rem;
+        .status-badge {
+            display: inline-block;
+            background: var(--soft-pink);
+            color: #d66d6d;
+            padding: 8px 16px;
             border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .action-card {
+            background: #fafafa;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            text-align: left;
+        }
+
+        .icon {
+            font-size: 24px;
+            margin-right: 15px;
+        }
+
+        .meds-btn {
+            background: var(--primary);
+            color: white;
             border: none;
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 10px;
         }
 
-        #yes-btn {
-            background-color: #ec4899;
-            color: white;
-            box-shadow: 0 5px 15px rgba(236, 72, 153, 0.3);
-        }
-
-        #no-btn {
-            background-color: #94a3b8;
-            color: white;
-            position: fixed; /* Allows it to jump anywhere on the screen */
-            transition: all 0.1s ease;
-            z-index: 100;
-        }
-
-        #success-message {
-            display: none;
-            animation: popIn 0.5s ease;
-        }
-
-        .love-note { font-size: 1rem; color: #4b5563; line-height: 1.5; }
-        .healing-wish { color: #db2777; font-weight: bold; margin-top: 15px; }
-
-        @keyframes popIn {
-            0% { transform: scale(0.5); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
+        .meds-btn:hover { transform: translateY(-2px); }
+        
+        footer { margin-top: 20px; font-size: 0.8rem; color: #aaa; }
     </style>
 </head>
 <body>
 
-    <div id="main-container">
-        <div id="quiz-box">
-            <h1>Pamela, do you love me? ✨</h1>
-            <div class="btn-wrapper">
-                <button id="yes-btn" onclick="celebrate()">Yes!</button>
-                <button id="no-btn">No</button>
+<div class="container">
+    <div class="header-image">
+        <h1>Pamoulti.</h1>
+        <p style="color: white; opacity: 0.9;">Take a deep breath. You are loved.</p>
+    </div>
+
+    <div class="content">
+        <span class="status-badge">Priority: Your Health</span>
+        
+        <p>I know you're at work feeling unwell, but remember that you are more important than any task. Here is your quick wellness check:</p>
+
+        <div class="action-card">
+            <span class="icon">💊</span>
+            <div>
+                <strong>Medicine Reminder</strong>
+                <div style="font-size: 0.85rem;">Did you take your dose yet? It helps with the body aches.</div>
             </div>
         </div>
 
-        <div id="success-message">
-            <h2 style="color: #be185d;">I knew it! ❤️</h2>
-            <p class="love-note">
-               I just wanted to remind you that you're very important to me. You have a strength that is honestly inspiring, even when you're under the weather.
-            </p>
-            <p class="healing-wish">
-                Please get some rest. I'm sending you all my love and a huge hug until you feel better! 🌸
-            </p>
+        <div class="action-card">
+            <span class="icon">🍵</span>
+            <div>
+                <strong>Throat Care</strong>
+                <div style="font-size: 0.85rem;">Try to find some warm tea or water. Small sips!</div>
+            </div>
         </div>
+
+        <button class="meds-btn" onclick="alert('Confirmed! I’m so proud of you for taking care of yourself. Keep drinking water!')">
+            I've Taken My Medicine
+        </button>
+
+        <footer>
+            Sent with love by Lucas.
+        </footer>
     </div>
+</div>
 
-    <script>
-        const noBtn = document.getElementById('no-btn');
-        const yesBtn = document.getElementById('yes-btn');
-
-        // Set initial position of No button
-        function setInitial() {
-            const rect = yesBtn.getBoundingClientRect();
-            noBtn.style.left = rect.left + 'px';
-            noBtn.style.top = (rect.bottom + 20) + 'px';
-        }
-        window.onload = setInitial;
-
-        // The "Jump" logic for both Touch and Mouse
-        function teleportNo(e) {
-            e.preventDefault(); // Prevents the actual click/tap
-            
-            const padding = 60;
-            const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-            const maxY = window.innerHeight - noBtn.offsetHeight - padding;
-
-            const yesRect = yesBtn.getBoundingClientRect();
-            const safeZone = 120; // Keep 120px away from Yes button
-
-            let newX, newY;
-            let tooClose = true;
-
-            while (tooClose) {
-                newX = Math.random() * maxX + (padding/2);
-                newY = Math.random() * maxY + (padding/2);
-
-                const distX = Math.abs(newX - yesRect.left);
-                const distY = Math.abs(newY - yesRect.top);
-
-                if (distX > safeZone || distY > safeZone) {
-                    tooClose = false;
-                }
-            }
-
-            noBtn.style.left = newX + 'px';
-            noBtn.style.top = newY + 'px';
-        }
-
-        // Listen for touch start (phone) and mouse over (computer)
-        noBtn.addEventListener('touchstart', teleportNo);
-        noBtn.addEventListener('mouseover', teleportNo);
-
-        function celebrate() {
-            document.getElementById('quiz-box').style.display = 'none';
-            document.getElementById('success-message').style.display = 'block';
-            noBtn.style.display = 'none';
-        }
-    </script>
 </body>
 </html>
